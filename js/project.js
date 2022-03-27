@@ -96,14 +96,14 @@ const pop = {
     audio: function () {
         let audio = document.createElement('audio');
         audio.classList.add('audio');
-        audio.src = '../audio/mixkit-retro-game.wav';
+        audio.src = '../audio/mixkit-retro-game.mp4';
         return audio;
     },
     //~play win
     audioWin: function () {
         let audioWIN = document.createElement('audio');
         audioWIN.classList.add('audio-win');
-        audioWIN.src = 'popping-game/audio/fairy-win.wav';
+        audioWIN.src = 'popping-game/audio/fairy-win.mp4';
         return audioWIN;
     },
     //~randomColor pastel
