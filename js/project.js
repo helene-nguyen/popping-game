@@ -96,14 +96,16 @@ const pop = {
     audio: function () {
         let audio = document.createElement('audio');
         audio.classList.add('audio');
-        audio.src = '../audio/mixkit-retro-game.mp4';
+        audio = new Audio('../audio/mixkit-retro-game.mp3');
+        audio.preload = 'auto';
+                
         return audio;
     },
     //~play win
     audioWin: function () {
         let audioWIN = document.createElement('audio');
         audioWIN.classList.add('audio-win');
-        audioWIN.src = 'popping-game/audio/fairy-win.mp4';
+        audioWIN.src = 'popping-game/audio/fairy-win.mp3';
         return audioWIN;
     },
     //~randomColor pastel
@@ -126,7 +128,7 @@ const pop = {
     inputsColor: function () {
         pop.colorsElement.insertAdjacentHTML('afterbegin', `
         <label for="color">Which theme ?</label>
-                    <input type="radio" name="color" id="neon"> Neon
+                    <input type="radio" name="color" id="neon" checked> Neon
                     <input type="radio" name="color" id="pastel"> Pastel
         `)
     },
@@ -156,6 +158,7 @@ const pop = {
     //~reset
     reset: function () {
         //erase all
+        pop.element.innerHTML = '';
     },
     //~submit btn
     submitBtn: function () {
