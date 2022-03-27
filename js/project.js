@@ -103,7 +103,7 @@ const pop = {
     audioWin: function () {
         let audioWIN = document.createElement('audio');
         audioWIN.classList.add('audio-win');
-        audioWIN.src = '../audio/fairy-win.wav';
+        audioWIN.src = 'popping-game/audio/fairy-win.wav';
         return audioWIN;
     },
     //~randomColor pastel
