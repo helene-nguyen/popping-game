@@ -22,7 +22,13 @@ const pop = {
             '#D9D7F1',
             '#FFFDDE',
             '#FFF9F9',
-            '#F3E9DD'
+            '#F3E9DD',
+            '#B6FFCE',
+            '#B8FFF9',
+            '#EF6D6D',
+            '#9ADCFF',
+            '#FCFFA6',
+            '#FF7171'
         ],
         neon: [
             '#49FF00',
@@ -41,8 +47,6 @@ const pop = {
         this.inputsColor();
         this.inputNumber();
         this.submitBtn();
-        this.addBalloon();
-        this.balloons();
     },
     //^FUNCTIONS
     //~change titles and text
@@ -70,8 +74,7 @@ const pop = {
                 document.querySelector('.audio').remove();
                 this.popped++;
             };
-            balloon.removeEventListener('click', (event) => {  
-            })
+            balloon.removeEventListener('click', (event) => {})
         });
     },
     //~remove event
@@ -89,7 +92,6 @@ const pop = {
             popBalloon.classList.add('popped');
 
         }
-        console.log(popBalloon);
         return popBalloon;
     },
     //~add audio
@@ -98,7 +100,7 @@ const pop = {
         audio.classList.add('audio');
         audio = new Audio('../audio/mixkit-retro-game.mp3');
         audio.preload = 'auto';
-                
+
         return audio;
     },
     //~play win
@@ -113,7 +115,7 @@ const pop = {
         let pastelColors = pop.balloonsColor.pastel;
         let random = Math.floor(Math.random() * pastelColors.length);
         let randomColorPastel = pastelColors[random];
-        console.log(randomColorPastel);
+
         return randomColorPastel;
     },
     //~randomColor neon
@@ -121,7 +123,7 @@ const pop = {
         let neonColors = pop.balloonsColor.neon;
         let random = Math.floor(Math.random() * neonColors.length);
         let randomColorNeon = neonColors[random];
-        console.log(randomColorNeon);
+
         return randomColorNeon;
     },
     //~create inputs color
@@ -137,11 +139,25 @@ const pop = {
         let inputPastelElement = document.querySelector('#pastel');
         let inputNeonElement = document.querySelector('#neon');
 
+        if (inputPastelElement.checked == true) {
+            balloon.style.backgroundColor = `${pop.randomColorPastel()}`;
+        } else {
+            balloon.style.backgroundColor = `${pop.randomColorNeon()}`;
+        };
+
         inputPastelElement.addEventListener('change', (event) => {
+            if (balloon.classList.contains('popped')) {
+                popBalloon.style.backgroundColor = '';
+                popBalloon.style.boxShadow = 'none';
+            }
             balloon.style.backgroundColor = `${pop.randomColorPastel()}`;
         });
 
         inputNeonElement.addEventListener('change', (event) => {
+            if (balloon.classList.contains('popped')) {
+                popBalloon.style.backgroundColor = '';
+                popBalloon.style.boxShadow = 'none';
+            }
             balloon.style.backgroundColor = `${pop.randomColorNeon()}`;
         });
     },
@@ -151,9 +167,10 @@ const pop = {
         <input type='number' id='number' min='10' max='100' placeholder='min 10 - max 100' >`);
     },
     //~input number balloons
-    balloons: function () {
-        let inputNumber = document.querySelector('#number');
-        
+    balloonsNumber: function () {
+        let inputNumber = document.getElementById('number').value;
+
+        return inputNumber;
     },
     //~reset
     reset: function () {
@@ -166,6 +183,26 @@ const pop = {
         btn.classList.add('btn');
         btn.textContent = 'Submit';
         this.formElement.appendChild(btn);
-    }
 
+        btn.addEventListener('click', (event) => {
+            let inputNumber = document.getElementById('number').value;
+            event.preventDefault();
+            pop.reset();
+            console.log(inputNumber);
+            //addcreate balloons board
+            this.balloons(inputNumber);
+
+        })
+    },
+    //~create balloons
+    balloons: function (value) {
+        for (let index = 0; index < value; index++) {
+            this.addBalloon();
+        }
+    }
 }
+
+//problem dark mode
+//put the color when it's checked
+//get the number of popped balloons and display it
+//add end message
