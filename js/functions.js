@@ -11,16 +11,16 @@ const template = {
     shareBtnTxt: "Share",
     //~social media
     social: [{
-            url: `url('https://github.com/helene-nguyen')`
+            url: `https://github.com/helene-nguyen`
         },
         {
-            url: `url('https://www.linkedin.com/in/helene-yumicode/')`
+            url: `https://www.linkedin.com/in/helene-nguyen-yumicode/`
         },
         {
-            url: `url('https://www.instagram.com/_yumicode/')`
+            url: `https://www.instagram.com/_yumicode/`
         },
         {
-            url: `url('https://twitter.com/_YumiCode')`
+            url: `https://twitter.com/_YumiCode`
         }
     ],
     socialIcons: [
